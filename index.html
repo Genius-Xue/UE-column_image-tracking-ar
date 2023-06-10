@@ -25,14 +25,19 @@
 
             AFRAME.registerComponent('soundhandler', {
                 init: function () {
-                        var entity = document.querySelector('[sound]');
-                        if (document.querySelector('a-marker').object3D.visible == true) {
-                            entity.components.sound.playSound();
-                        } else {
-                            entity.components.sound.pauseSound();
-                        }
+                    var marker = this.el;
+                    this.vid = document.querySelector("#sound");
 
-                }
+                    marker.addEventListener('markerFound', function () {
+                        this.toggle = true;
+                        this.sound.play();
+                    }.bind(this));
+
+                    marker.addEventListener('markerLost', function () {
+                        this.toggle = false;
+                        this.vid.pause();
+                    }.bind(this));
+                },
             });
         </script>
     </head>
