@@ -22,18 +22,6 @@
                     }.bind(this));
                 },
             });
-
-            AFRAME.registerComponent('soundhandler', {
-                tick: function () {
-                        var entity = document.querySelector('#sound');
-                        if (document.querySelector('a-marker').object3D.visible == true) {
-                            entity.components.sound.playSound();
-                        } else {
-                            entity.components.sound.pauseSound();
-                        }
-
-                }
-            });
         </script>
     </head>
 
@@ -56,10 +44,9 @@
                     crossorigin
                     webkit-playsinline
                     autoplay
-        
+                    muted
                     playsinline
                 ></video>
-                <audio id="sound" src="assets/Dream It - TrackTribe.mp3" preload="auto"></audio>
             </a-assets>
 
             <a-marker
@@ -75,7 +62,6 @@
                 emitevents="true"
                 cursor="fuse: false; rayOrigin: mouse;"
                 id="markerA"
-                soundhandler
             >
                 <a-video
                     src="#vid"
@@ -83,13 +69,10 @@
                     position="0 0.1 0"
                     rotation="-90 0 0"
                     class="clickable"
-                    muted
                     gesture-handler
-
-                    
                 ></a-video>
             </a-marker>
-            <a-entity sound="src: #sound" autoplay="true"></a-entity>
+
             <a-entity camera></a-entity>
         </a-scene>
     </body>
