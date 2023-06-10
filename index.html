@@ -24,20 +24,15 @@
             });
 
             AFRAME.registerComponent('soundhandler', {
-                init: function () {
-                    var marker = this.el;
-                    this.vid = document.querySelector("#sound");
+                tick: function () {
+                        var entity = document.querySelector('[sound]');
+                        if (document.querySelector('a-marker').object3D.visible == true) {
+                            entity.components.sound.playSound();
+                        } else {
+                            entity.components.sound.pauseSound();
+                        }
 
-                    marker.addEventListener('markerFound', function () {
-                        this.toggle = true;
-                        this.sound.play();
-                    }.bind(this));
-
-                    marker.addEventListener('markerLost', function () {
-                        this.toggle = false;
-                        this.vid.pause();
-                    }.bind(this));
-                },
+                }
             });
         </script>
     </head>
@@ -93,7 +88,7 @@
                     
                 ></a-video>
             </a-marker>
-
+            <a-entity sound="src: #sound" autoplay="false"></a-entity>
             <a-entity camera></a-entity>
         </a-scene>
     </body>
