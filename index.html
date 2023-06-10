@@ -22,6 +22,18 @@
                     }.bind(this));
                 },
             });
+
+            AFRAME.registerComponent('soundhandler', {
+                tick: function () {
+                        var entity = document.querySelector('[sound]');
+                        if (document.querySelector('a-marker').object3D.visible == true) {
+                            entity.components.sound.playSound();
+                        } else {
+                            entity.components.sound.pauseSound();
+                        }
+
+                }
+            });
         </script>
     </head>
 
@@ -34,7 +46,6 @@
             embedded
             gesture-detector
         >
-        <a-sound src="https://github.com/Genius-Xue/UE-column_image-tracking-ar/blob/f8c38405373f85282bda79213096f7a1e38fc5c5/assets/Dream%20It%20-%20TrackTribe.mp3" autoplay="true"></a-sound>
             <a-assets>
                 <video
                     id="vid"
@@ -48,6 +59,7 @@
                     muted
                     playsinline
                 ></video>
+                <audio id="sound" src="assets/Dream It - TrackTribe.mp3" preload="auto"></audio>
             </a-assets>
 
             <a-marker
