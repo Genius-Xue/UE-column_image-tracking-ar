@@ -34,6 +34,7 @@
             embedded
             gesture-detector
         >
+        <a-sound src="assets/Dream It - TrackTribe.mp3" autoplay="true"></a-sound>
             <a-assets>
                 <video
                     id="vid"
@@ -47,7 +48,6 @@
                     muted
                     playsinline
                 ></video>
-                <audio id = "happy" src="assets/Dream It - TrackTribe.mp3"></audio>
             </a-assets>
 
             <a-marker
@@ -71,8 +71,7 @@
                     rotation="-90 0 0"
                     class="clickable"
                     gesture-handler
-                    sound="src: #happy;
-                           on:click"
+                    
                 ></a-video>
             </a-marker>
 
